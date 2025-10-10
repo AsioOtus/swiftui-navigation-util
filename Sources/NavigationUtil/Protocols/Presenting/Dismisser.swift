@@ -1,32 +1,32 @@
 import SwiftUI
 
-public protocol Dismisser: DismissRegistrable {
-    func dismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+public protocol Dismisser {
+    func dismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation?
-    ) async throws where P: DismissPreparable
+    ) async throws where Property: DismissPreparable
 
-    func dismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+    func dismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation?
-    ) async throws where P: Routable
+    ) async throws where Property: Routable
 
     func dismiss (
         _ property: ReferenceWritableKeyPath<Self, Bool>,
         animation: Animation?
     ) async throws
 
-    func forceDismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+    func forceDismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation?
     )
 }
 
 public extension Dismisser {
-    func dismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+    func dismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation? = nil
-    ) async throws where P: DismissPreparable {
+    ) async throws where Property: DismissPreparable {
         try await self[keyPath: property]?.prepareDismiss()
 
         if let animation {
@@ -38,25 +38,12 @@ public extension Dismisser {
         }
     }
 
-    func dismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+    func dismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation? = nil
-    ) async throws where P: Routable {
+    ) async throws where Property: Routable {
         try await self[keyPath: property]?.router.prepareDismiss()
 
-        if let animation {
-            withAnimation(animation) {
-                self[keyPath: property] = nil
-            }
-        } else {
-            self[keyPath: property] = nil
-        }
-    }
-
-    func dismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
-        animation: Animation? = nil
-    ) async throws where P: Equatable {
         if let animation {
             withAnimation(animation) {
                 self[keyPath: property] = nil
@@ -81,8 +68,8 @@ public extension Dismisser {
 }
 
 public extension Dismisser {
-    func forceDismiss <P> (
-        _ property: ReferenceWritableKeyPath<Self, P?>,
+    func forceDismiss <Property> (
+        _ property: ReferenceWritableKeyPath<Self, Property?>,
         animation: Animation? = nil
     ) {
         if let animation {

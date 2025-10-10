@@ -1,5 +1,7 @@
-public protocol Router: Presenter, DismissPreparable, NavigationInterceptable { }
+public protocol Router: Navigatable, NavigationInterceptable, Presentable { }
 
 public extension Router {
-    func prepareDismiss () async throws { }
+    func prepareDismiss () async throws {
+        try await resetNavigation()
+    }
 }

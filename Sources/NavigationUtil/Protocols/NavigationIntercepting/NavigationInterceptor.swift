@@ -1,4 +1,4 @@
-public protocol NavigationInterceptor<Requirement> {
+public protocol NavigationInterceptor<Requirement>: NavigationResetable {
     associatedtype Requirement: NavigationRequirement
 
     func requestPermission (for requirements: [Requirement]) async throws

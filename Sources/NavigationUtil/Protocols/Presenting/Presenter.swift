@@ -91,7 +91,6 @@ public protocol Presenter: NavigationResetable {
         _ property: ReferenceWritableKeyPath<Self, Bool>
     ) async throws
 
-
     func presentUntilResult <P, NR: NavigationRequirement> (
         _ property: ReferenceWritableKeyPath<Self, P?>,
         new: P,

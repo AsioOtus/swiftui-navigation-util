@@ -4,13 +4,3 @@ public protocol NavigationInterceptable<Interceptor> {
 
     var navigationInterceptor: Interceptor { get }
 }
-
-public extension NavigationInterceptable {
-    func requestPermission (for requirements: [Interceptor.Requirement]) async throws {
-        try await navigationInterceptor.requestPermission(for: requirements)
-    }
-
-    func requestPermission (for requirement: Interceptor.Requirement) async throws {
-        try await navigationInterceptor.requestPermission(for: requirement)
-    }
-}

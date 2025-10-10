@@ -1,5 +1,5 @@
-public protocol Routable: Presentable {
-    associatedtype R: Router
+public protocol Routable {
+    associatedtype Router: NavigationUtil.Router
 
-    var router: R { get }
+    var router: Router { get }
 }

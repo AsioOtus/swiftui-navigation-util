@@ -1,7 +1,9 @@
 public protocol Route {
-    var requirements: [NavigationRequirement] { get }
+    associatedtype Requirement: NavigationRequirement
+
+    var requirements: [Requirement] { get }
 }
 
 public extension Route {
-    var requirements: [NavigationRequirement] { [] }
+    var requirements: [Requirement] { [] }
 }

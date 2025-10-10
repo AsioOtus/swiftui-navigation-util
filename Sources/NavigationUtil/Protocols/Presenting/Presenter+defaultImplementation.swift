@@ -23,7 +23,7 @@ public extension Presenter {
         animation: Animation? = nil,
         adjust: (P) -> Void = { _ in }
     ) async throws where P: Presentable {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         let propertyValue = self[keyPath: property]
         if let propertyValue, propertyValue == new { return }
@@ -44,7 +44,7 @@ public extension Presenter {
         animation: Animation? = nil,
         adjust: (P) -> Void = { _ in }
     ) async throws where P: Presentable, Self: NavigationInterceptable, Self.Requirement == NR {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         let propertyValue = self[keyPath: property]
         if let propertyValue, propertyValue == new { return }
@@ -135,7 +135,7 @@ public extension Presenter {
         animation: Animation? = nil,
         adjust: (P) -> Void = { _ in }
     ) async throws where P: Equatable {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         guard self[keyPath: property] != new else { return }
 
@@ -155,7 +155,7 @@ public extension Presenter {
         animation: Animation? = nil,
         adjust: (P) -> Void = { _ in }
     ) async throws where P: Equatable, Self: NavigationInterceptable, Self.Requirement == NR {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         guard self[keyPath: property] != new else { return }
 
@@ -239,7 +239,7 @@ public extension Presenter {
         requirements: [NR],
         animation: Animation? = nil
     ) async throws {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         guard !self[keyPath: property] else { return }
 
@@ -257,7 +257,7 @@ public extension Presenter {
         requirements: [NR],
         animation: Animation? = nil
     ) async throws where Self: NavigationInterceptable, Self.Requirement == NR {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         guard !self[keyPath: property] else { return }
 
@@ -276,7 +276,7 @@ public extension Presenter {
         _ property: ReferenceWritableKeyPath<Self, P?>,
         new: P
     ) async throws {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
         self[keyPath: property] = new
     }
 
@@ -290,7 +290,7 @@ public extension Presenter {
     func directPresent (
         _ property: ReferenceWritableKeyPath<Self, Bool>
     ) async throws {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
         self[keyPath: property] = true
     }
 }
@@ -300,7 +300,7 @@ public extension Presenter where Self: ForcedNavigationResetable {
         _ property: ReferenceWritableKeyPath<Self, P?>,
         new: P
     ) async throws {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
         forcedResetNavigation()
         self[keyPath: property] = new
     }
@@ -316,7 +316,7 @@ public extension Presenter where Self: ForcedNavigationResetable {
     func forcePresent (
         _ property: ReferenceWritableKeyPath<Self, Bool>
     ) async throws {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
         forcedResetNavigation()
         self[keyPath: property] = true
     }
@@ -344,7 +344,7 @@ public extension Presenter {
         animation: Animation? = nil,
         adjust: (P) -> Void = { _ in }
     ) async throws -> P.ResultValue where P: ResultProvidable {
-        dismissRegistrar.register(property)
+        dismissSet.add(property)
 
         try await _present(
             property,
@@ -396,7 +396,7 @@ private extension Presenter {
     ) async throws where Self: NavigationInterceptable, Self.Requirement == NR {
         try await resetNavigation()
 
-        try await self.requestPermission(for: requirements)
+        try await self.navigationInterceptor.requestPermission(for: requirements)
 
         adjust(new)
 
