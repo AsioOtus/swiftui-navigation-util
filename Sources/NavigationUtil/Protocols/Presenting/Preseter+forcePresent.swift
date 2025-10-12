@@ -44,7 +44,7 @@ public extension Presenter {
     func forcePresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }

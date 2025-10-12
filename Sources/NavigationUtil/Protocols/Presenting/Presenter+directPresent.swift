@@ -8,7 +8,7 @@ public extension Presenter {
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default
     ) async throws {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: true,
             requirements: requirements,
@@ -25,7 +25,7 @@ public extension Presenter {
         requirements: [Requirement] = [],
         animation: Animation? = .default
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: true,
             requirements: requirements,
@@ -41,14 +41,14 @@ public extension Presenter {
 // MARK: - optional
 
 public extension Presenter {
-    func directPresent <Property, Requirement: NavigationRequirement> (
+    func directPresentValue <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -64,14 +64,14 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
+    func directPresentValue <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -110,14 +110,14 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property, Requirement: NavigationRequirement> (
+    func directPresentValue <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -133,14 +133,14 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
+    func directPresentValue <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -183,15 +183,15 @@ public extension Presenter {
 // MARK: - general
 
 public extension Presenter {
-    func directPresent <Property, Requirement: NavigationRequirement> (
+    func directPresentValue <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -205,15 +205,15 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
+    func directPresentValue <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -230,7 +230,7 @@ public extension Presenter {
     func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
@@ -249,15 +249,15 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property, Requirement: NavigationRequirement> (
+    func directPresentValue <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -271,15 +271,15 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
+    func directPresentValue <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
-        try await directPresent(
+        try await directPresentValue(
             keyPath,
             new: new,
             requirements: requirements,
@@ -296,7 +296,7 @@ public extension Presenter {
     func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        resetValue: Property?,
+        resetValue: Property? = nil,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
@@ -319,7 +319,7 @@ public extension Presenter {
 // MARK: - dismiss
 
 public extension Presenter {
-    func directPresent <Property, Requirement: NavigationRequirement> (
+    func directPresentValue <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
@@ -339,7 +339,7 @@ public extension Presenter {
         )
     }
 
-    func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
+    func directPresentValue <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
@@ -355,6 +355,32 @@ public extension Presenter {
             prepare: {
                 let property = self[keyPath: keyPath]
                 if property == new {
+                    adjust(property)
+                    return
+                }
+
+                forceDismissAll()
+            },
+            adjust: adjust
+        )
+    }
+
+    func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
+        _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
+        new: Property,
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
+        animation: Animation? = .default,
+        adjust: (Property?) -> Void = { _ in },
+        dismiss: (DismissStore<Self>) -> Void
+    ) async throws {
+        try await _present(
+            keyPath,
+            new: new,
+            animation: animation,
+            dismiss: dismiss,
+            prepare: {
+                let property = self[keyPath: keyPath]
+                if property?.traits == new.traits, let property {
                     adjust(property)
                     return
                 }

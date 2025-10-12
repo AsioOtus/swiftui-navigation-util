@@ -216,7 +216,7 @@ public extension DismissStore {
 
 // MARK: - add forced
 
-extension DismissStore {
+public extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
@@ -235,7 +235,7 @@ extension DismissStore {
     }
 }
 
-extension DismissStore {
+public extension DismissStore {
     @discardableResult
     func addForced (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
@@ -256,7 +256,7 @@ extension DismissStore {
     }
 }
 
-extension DismissStore {
+public extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
@@ -287,7 +287,7 @@ extension DismissStore {
     }
 }
 
-extension DismissStore {
+public extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,

@@ -1,3 +1,3 @@
 import SwiftUI
 
-public protocol Presenter: AllDismisser { }
+public protocol Presenter: Dismisser, AllDismisser { }
