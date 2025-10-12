@@ -4,7 +4,7 @@ public extension Presenter where Self: Dismisser {
     func presentUntilResult <Property: ResultProvidable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws -> Property.ResultValue {

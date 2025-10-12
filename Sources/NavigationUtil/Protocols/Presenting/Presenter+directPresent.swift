@@ -5,7 +5,7 @@ import SwiftUI
 public extension Presenter {
     func directPresent <Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default
     ) async throws {
         try await directPresent(
@@ -22,7 +22,7 @@ public extension Presenter {
 
     func directPresent <Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await directPresent(
@@ -44,7 +44,7 @@ public extension Presenter {
     func directPresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -67,7 +67,7 @@ public extension Presenter {
     func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -90,7 +90,7 @@ public extension Presenter {
     func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -113,7 +113,7 @@ public extension Presenter {
     func directPresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -136,7 +136,7 @@ public extension Presenter {
     func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -159,7 +159,7 @@ public extension Presenter {
     func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -187,7 +187,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -209,7 +209,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -231,7 +231,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -253,7 +253,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -275,7 +275,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -297,7 +297,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -322,7 +322,7 @@ public extension Presenter {
     func directPresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
@@ -342,7 +342,7 @@ public extension Presenter {
     func directPresent <Property: Equatable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
@@ -368,7 +368,7 @@ public extension Presenter {
     func directPresent <Property: Presentable, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void

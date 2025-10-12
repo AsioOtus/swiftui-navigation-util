@@ -3,7 +3,7 @@ import SwiftUI
 public extension Presenter {
     func forcePresent <Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default
     ) async throws {
         try await forcePresent(
@@ -21,7 +21,7 @@ public extension Presenter {
     func forcePresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -45,7 +45,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         resetValue: Property?,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
@@ -66,7 +66,7 @@ public extension Presenter {
     func forcePresent <Property, Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
-        requirements: [Requirement],
+        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void

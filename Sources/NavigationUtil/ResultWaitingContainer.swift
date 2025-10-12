@@ -17,7 +17,7 @@ public final class ResultWaiter <ResultProvider: ResultProvidable>: Presenter, D
     }
 
     public func presentUntilResult <Requirement: NavigationRequirement> (
-        requirements: [Requirement],
+        requirements: [Requirement] = [],
         animation: Animation? = .default,
         adjust: (ResultProvider) -> Void
     ) async throws -> ResultProvider.ResultValue {
