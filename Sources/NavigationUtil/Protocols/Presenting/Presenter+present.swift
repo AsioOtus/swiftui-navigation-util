@@ -6,7 +6,7 @@ public extension Presenter {
     func present <Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
         requirements: [Requirement],
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await present(
             keyPath,
@@ -23,7 +23,7 @@ public extension Presenter {
     func present <Requirement: NavigationRequirement> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
         requirements: [Requirement],
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -45,7 +45,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -68,7 +68,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -91,7 +91,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -114,7 +114,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -137,7 +137,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -160,7 +160,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -188,7 +188,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -210,7 +210,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -232,7 +232,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws {
         try await present(
@@ -254,7 +254,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -276,7 +276,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -298,7 +298,7 @@ public extension Presenter {
         new: Property,
         resetValue: Property?,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
@@ -323,7 +323,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
@@ -343,7 +343,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
@@ -369,7 +369,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
@@ -395,7 +395,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -416,7 +416,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
@@ -443,7 +443,7 @@ public extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void,
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {

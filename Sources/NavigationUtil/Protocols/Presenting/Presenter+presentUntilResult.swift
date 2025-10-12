@@ -5,7 +5,7 @@ public extension Presenter where Self: Dismisser {
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
         requirements: [Requirement],
-        animation: Animation?,
+        animation: Animation? = .default,
         adjust: (Property) -> Void
     ) async throws -> Property.ResultValue {
         try await present(

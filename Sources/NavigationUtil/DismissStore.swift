@@ -42,7 +42,7 @@ public extension DismissStore {
     @discardableResult
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, nil, animation: animation)
     }
@@ -50,7 +50,7 @@ public extension DismissStore {
     @discardableResult
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property?) async throws -> Void
     ) -> DismissStore {
         add(keyPath, nil, animation: animation, prepare)
@@ -59,7 +59,7 @@ public extension DismissStore {
     @discardableResult
     func add <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, nil, animation: animation) {
             try await $0?.prepareDismiss()
@@ -69,7 +69,7 @@ public extension DismissStore {
     @discardableResult
     func add <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, nil, animation: animation) { property in
             try await property?.dismissAll()
@@ -82,7 +82,7 @@ public extension DismissStore {
     @discardableResult
     func add (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, false, animation: animation)
     }
@@ -90,7 +90,7 @@ public extension DismissStore {
     @discardableResult
     func add (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping () async throws -> Void
     ) -> DismissStore {
         add(keyPath, false, animation: animation) { _ in
@@ -102,7 +102,7 @@ public extension DismissStore {
     func add <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
         _ property: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, false, animation: animation) { _ in
             try await property.prepareDismiss()
@@ -113,7 +113,7 @@ public extension DismissStore {
     func add <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
         _ property: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath, false, animation: animation) { _ in
             try await property.dismissAll()
@@ -127,7 +127,7 @@ public extension DismissStore {
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -140,7 +140,7 @@ public extension DismissStore {
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property) async throws -> Void
     ) -> DismissStore {
         add(keyPath) { root, keyPath in
@@ -156,7 +156,7 @@ public extension DismissStore {
     func add <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -169,7 +169,7 @@ public extension DismissStore {
     func add <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         add(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -220,7 +220,7 @@ extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         addForced(keyPath, nil, animation: animation)
     }
@@ -228,7 +228,7 @@ extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property?) -> Void
     ) -> DismissStore {
         addForced(keyPath, nil, animation: animation, prepare)
@@ -239,7 +239,7 @@ extension DismissStore {
     @discardableResult
     func addForced (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         addForced(keyPath, false, animation: animation)
     }
@@ -247,7 +247,7 @@ extension DismissStore {
     @discardableResult
     func addForced (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping () -> Void
     ) -> DismissStore {
         addForced(keyPath, false, animation: animation) { _ in
@@ -261,7 +261,7 @@ extension DismissStore {
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) -> DismissStore {
         addForced(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -274,7 +274,7 @@ extension DismissStore {
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property) -> Void
     ) -> DismissStore {
         addForced(keyPath) { root, keyPath in

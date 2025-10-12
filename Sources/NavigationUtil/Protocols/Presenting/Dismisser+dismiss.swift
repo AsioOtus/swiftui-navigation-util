@@ -3,14 +3,14 @@ import SwiftUI
 public extension Dismisser {
     func dismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, nil, animation: animation)
     }
 
     func dismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property?) -> Void
     ) async throws {
         try await dismiss(keyPath, nil, animation: animation, prepare)
@@ -18,7 +18,7 @@ public extension Dismisser {
 
     func dismiss <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, nil, animation: animation) {
             try await $0?.prepareDismiss()
@@ -27,7 +27,7 @@ public extension Dismisser {
 
     func dismiss <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, nil, animation: animation) {
             try await $0?.dismissAll()
@@ -38,14 +38,14 @@ public extension Dismisser {
 public extension Dismisser {
     func dismiss (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, false, animation: animation)
     }
 
     func dismiss (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping () async throws -> Void
     ) async throws {
         try await dismiss(keyPath, false, animation: animation) { _ in
@@ -56,7 +56,7 @@ public extension Dismisser {
     func dismiss <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
         _ property: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, false, animation: animation) { _ in
             try await property.prepareDismiss()
@@ -66,7 +66,7 @@ public extension Dismisser {
     func dismiss <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
         _ property: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath, false, animation: animation) { _ in
             try await property.dismissAll()
@@ -78,7 +78,7 @@ public extension Dismisser {
     func dismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -90,7 +90,7 @@ public extension Dismisser {
     func dismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property) async throws -> Void
     ) async throws {
         try await dismiss(keyPath) { root, keyPath in
@@ -105,7 +105,7 @@ public extension Dismisser {
     func dismiss <Property: DismissPreparable> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -117,7 +117,7 @@ public extension Dismisser {
     func dismiss <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) async throws {
         try await dismiss(keyPath) { root, keyPath in
             withAnimation(animation) {

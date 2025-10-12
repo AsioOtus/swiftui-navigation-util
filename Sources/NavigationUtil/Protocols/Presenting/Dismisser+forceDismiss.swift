@@ -3,14 +3,14 @@ import SwiftUI
 extension Dismisser {
         func forceDismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?
+        animation: Animation? = .default
     ) {
         forceDismiss(keyPath, nil, animation: animation)
     }
 
         func forceDismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property?) -> Void
     ) {
         forceDismiss(keyPath, nil, animation: animation, prepare)
@@ -20,14 +20,14 @@ extension Dismisser {
 extension Dismisser {
         func forceDismiss (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        animation: Animation?
+        animation: Animation? = .default
     ) {
         forceDismiss(keyPath, false, animation: animation)
     }
 
         func forceDismiss (
         _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping () -> Void
     ) async {
         forceDismiss(keyPath, false, animation: animation) { _ in
@@ -40,7 +40,7 @@ extension Dismisser {
         func forceDismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?
+        animation: Animation? = .default
     ) {
         forceDismiss(keyPath) { root, keyPath in
             withAnimation(animation) {
@@ -52,7 +52,7 @@ extension Dismisser {
         func forceDismiss <Property> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         _ value: Property,
-        animation: Animation?,
+        animation: Animation? = .default,
         _ prepare: @escaping (Property) -> Void
     ) {
         forceDismiss(keyPath) { root, keyPath in
