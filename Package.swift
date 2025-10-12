@@ -20,5 +20,11 @@ let package = Package(
         .target(
             name: "NavigationUtil"
         ),
+        .testTarget(
+            name: "NavigationUtilTests",
+            dependencies: [
+                "NavigationUtil"
+            ]
+        )
     ]
 )

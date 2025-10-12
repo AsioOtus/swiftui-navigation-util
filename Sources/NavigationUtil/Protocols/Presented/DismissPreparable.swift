@@ -2,8 +2,12 @@ public protocol DismissPreparable {
     func prepareDismiss () async throws
 }
 
-public extension DismissPreparable where Self: NavigationResetable {
+public extension DismissPreparable {
+    func prepareDismiss () async throws { }
+}
+
+public extension DismissPreparable where Self: AllDismisser {
     func prepareDismiss () async throws {
-        try await resetNavigation()
+        try await dismissAll()
     }
 }

@@ -3,52 +3,37 @@ import SwiftUI
 
 @available(iOS 17.0,*)
 @Observable
-public final class ResultWaitingContainer<RP: ResultProvidable>: Presenter {
-    public typealias ResultValue = RP.ResultValue
+public final class ResultWaiter <ResultProvider: ResultProvidable>: Presenter, Dismisser {
+    public let dismissStore = DismissStore<ResultWaiter>()
 
-    internal let resultProvider: () -> RP
+    internal let resultProvider: () -> ResultProvider
 
-    public var presented: RP?
+    public var presenting: ResultProvider?
 
-    public init (_ resultProvider: @escaping @autoclosure () -> RP) {
+    public init (_ resultProvider: @escaping @autoclosure () -> ResultProvider) {
         self.resultProvider = resultProvider
+
+        dismissStore.add(\.presenting, animation: .default)
     }
 
-    public func presentUntilResult (animation: Animation? = nil,) async throws -> RP.ResultValue {
+    public func presentUntilResult <Requirement: NavigationRequirement> (
+        requirements: [Requirement],
+        animation: Animation? = nil,
+        adjust: (ResultProvider) -> Void
+    ) async throws -> ResultProvider.ResultValue {
         try await presentUntilResult(
-            \.presented,
-             new: resultProvider()
+            \.presenting,
+            new: resultProvider(),
+            requirements: requirements,
+            animation: animation,
+            adjust: adjust
         )
-    }
-
-    public func dismiss () async throws {
-        forceDismiss(\.presented)
     }
 }
 
 @available(iOS 17.0,*)
 public extension ResultProvidable {
-    func container () -> ResultWaitingContainer<Self> {
+    func waiter () -> ResultWaiter<Self> {
         .init(self)
-    }
-}
-
-@available(iOS 17.0,*)
-public extension Presenter {
-    func presentUntilResult <P> (
-        _ container: ResultWaitingContainer<P>,
-        animation: Animation? = nil
-    ) async throws -> P.ResultValue where P: Presentable {
-        try await container.presentUntilResult(animation: animation)
-    }
-}
-
-@available(iOS 17.0,*)
-public extension Dismisser {
-    func dismiss <P> (
-        _ container: ResultWaitingContainer<P>,
-        animation: Animation? = nil
-    ) async throws where P: ResultProvidable {
-        try await container.dismiss()
     }
 }

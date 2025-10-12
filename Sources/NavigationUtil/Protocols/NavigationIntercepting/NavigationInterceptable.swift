@@ -1,4 +1,4 @@
-public protocol NavigationInterceptable<Interceptor> {
+public protocol NavigationInterceptable <Interceptor> {
     associatedtype Requirement: NavigationRequirement
     associatedtype Interceptor: NavigationInterceptor where Interceptor.Requirement == Requirement
 

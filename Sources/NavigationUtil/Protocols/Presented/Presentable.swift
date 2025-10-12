@@ -1,11 +1,5 @@
-public protocol Presentable: Equatable, DismissPreparable {
+public protocol Presentable: DismissPreparable {
     var traits: Set<AnyHashable> { get }
-}
-
-public extension Presentable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.traits == rhs.traits
-    }
 }
 
 public extension Presentable {
