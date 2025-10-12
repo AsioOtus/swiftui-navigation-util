@@ -42,8 +42,16 @@ public extension DismissStore {
     @discardableResult
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        add(keyPath, nil, animation: animation)
+    }
+
+    @discardableResult
+    func add <Property> (
+        _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
         animation: Animation? = .default,
-        _ prepare: @escaping (Property?) async throws -> Void = { _ in }
+        _ prepare: @escaping (Property?) async throws -> Void
     ) -> DismissStore {
         add(keyPath, nil, animation: animation, prepare)
     }
@@ -74,8 +82,16 @@ public extension DismissStore {
     @discardableResult
     func add (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        add(keyPath, false, animation: animation)
+    }
+
+    @discardableResult
+    func add (
+        _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
         animation: Animation? = .default,
-        _ prepare: @escaping () async throws -> Void = { }
+        _ prepare: @escaping () async throws -> Void
     ) -> DismissStore {
         add(keyPath, false, animation: animation) { _ in
             try await prepare()
@@ -111,8 +127,21 @@ public extension DismissStore {
     func add <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        add(keyPath) { root, keyPath in
+            withAnimation(animation) {
+                root[keyPath: keyPath] = value
+            }
+        }
+    }
+
+    @discardableResult
+    func add <Property> (
+        _ keyPath: ReferenceWritableKeyPath<Root, Property>,
+        _ value: Property,
         animation: Animation? = .default,
-        _ prepare: @escaping (Property) async throws -> Void = { _ in }
+        _ prepare: @escaping (Property) async throws -> Void
     ) -> DismissStore {
         add(keyPath) { root, keyPath in
             try await prepare(root[keyPath: keyPath])
@@ -191,8 +220,16 @@ extension DismissStore {
     @discardableResult
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        addForced(keyPath, nil, animation: animation)
+    }
+
+    @discardableResult
+    func addForced <Property> (
+        _ keyPath: ReferenceWritableKeyPath<Root, Property?>,
         animation: Animation? = .default,
-        _ prepare: @escaping (Property?) -> Void = { _ in }
+        _ prepare: @escaping (Property?) -> Void
     ) -> DismissStore {
         addForced(keyPath, nil, animation: animation, prepare)
     }
@@ -202,8 +239,16 @@ extension DismissStore {
     @discardableResult
     func addForced (
         _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        addForced(keyPath, false, animation: animation)
+    }
+
+    @discardableResult
+    func addForced (
+        _ keyPath: ReferenceWritableKeyPath<Root, Bool>,
         animation: Animation? = .default,
-        _ prepare: @escaping () -> Void = { }
+        _ prepare: @escaping () -> Void
     ) -> DismissStore {
         addForced(keyPath, false, animation: animation) { _ in
             prepare()
@@ -216,8 +261,21 @@ extension DismissStore {
     func addForced <Property> (
         _ keyPath: ReferenceWritableKeyPath<Root, Property>,
         _ value: Property,
+        animation: Animation? = .default
+    ) -> DismissStore {
+        addForced(keyPath) { root, keyPath in
+            withAnimation(animation) {
+                root[keyPath: keyPath] = value
+            }
+        }
+    }
+
+    @discardableResult
+    func addForced <Property> (
+        _ keyPath: ReferenceWritableKeyPath<Root, Property>,
+        _ value: Property,
         animation: Animation? = .default,
-        _ prepare: @escaping (Property) -> Void = { _ in }
+        _ prepare: @escaping (Property) -> Void
     ) -> DismissStore {
         addForced(keyPath) { root, keyPath in
             prepare(root[keyPath: keyPath])
