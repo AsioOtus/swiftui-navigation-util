@@ -6,7 +6,7 @@ public extension Presenter where Self: Dismisser {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws -> Property.ResultValue {
         try await present(
             keyPath,

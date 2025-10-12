@@ -23,7 +23,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await forcePresent(
             keyPath,
@@ -47,7 +47,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await forcePresent(
             keyPath,
@@ -68,7 +68,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
         try await _present(

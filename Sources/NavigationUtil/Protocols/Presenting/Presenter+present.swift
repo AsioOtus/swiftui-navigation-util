@@ -46,7 +46,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -69,7 +69,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -92,7 +92,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -115,7 +115,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -138,7 +138,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -161,7 +161,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -189,7 +189,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -211,7 +211,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -233,7 +233,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws {
         try await present(
             keyPath,
@@ -255,7 +255,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -277,7 +277,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -299,7 +299,7 @@ public extension Presenter {
         resetValue: Property?,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void
+        adjust: (Property) -> Void = { _ in }
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await present(
             keyPath,
@@ -324,7 +324,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
         try await _present(
@@ -344,7 +344,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
         try await _present(
@@ -370,7 +370,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws {
         try await _present(
@@ -396,7 +396,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await _present(
@@ -417,7 +417,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await _present(
@@ -444,7 +444,7 @@ public extension Presenter {
         new: Property,
         requirements: [Requirement] = [],
         animation: Animation? = .default,
-        adjust: (Property) -> Void,
+        adjust: (Property) -> Void = { _ in },
         dismiss: (DismissStore<Self>) -> Void
     ) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
         try await _present(
