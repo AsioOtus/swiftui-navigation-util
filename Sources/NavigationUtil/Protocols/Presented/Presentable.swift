@@ -5,8 +5,3 @@ public protocol Presentable: DismissPreparable {
 public extension Presentable {
     var traits: Set<AnyHashable> { [] }
 }
-
-public extension Presentable {
-    func prepareDismiss () async throws { }
-}
-

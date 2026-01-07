@@ -12,8 +12,8 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: { _ in },
-            dismiss: {
-                $0.add(keyPath, false, animation: .default)
+            dismiss: { _, store in
+                store.add(keyPath, false, animation: .default)
             }
         )
     }
@@ -35,8 +35,8 @@ public extension Presenter {
                     adjust(new)
                 }
             },
-            dismiss: {
-                $0.add(keyPath, nil, animation: .default)
+            dismiss: { _, store in
+                store.add(keyPath, nil, animation: .default)
             }
         )
     }
@@ -55,7 +55,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: adjust,
-            dismiss: { store in
+            dismiss: { _, store in
                 if let resetValue {
                     store.add(keyPath, resetValue, animation: .default)
                 }
@@ -69,7 +69,7 @@ public extension Presenter {
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in },
-        dismiss: (DismissStore<Self>) -> Void
+        dismiss: (Property, DismissStore<Self>) -> Void
     ) async throws {
         try await _present(
             keyPath,

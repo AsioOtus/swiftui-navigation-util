@@ -145,7 +145,7 @@ public extension Dismisser {
 
     func dismiss <Property: AllDismisser> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
-        _ dismiss: @escaping AsyncThrowablePropertyAction<Self, Property>
+        _ dismiss: @escaping AsyncThrowablePropertyAction<Self, Property> = { _, _ in }
     ) async throws {
         try await self[keyPath: keyPath].dismissAll()
         try await dismiss(self, keyPath)

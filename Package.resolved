@@ -1,0 +1,15 @@
+{
+  "originHash" : "793f651e965605c57bb2d4f289138d5c872c3baa8ca4a866d85e1998ca89631a",
+  "pins" : [
+    {
+      "identity" : "swiftui-signal-util",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AsioOtus/swiftui-signal-util",
+      "state" : {
+        "revision" : "40bfd6cc4288e800d48055f6dfcec02ea69be87e",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}

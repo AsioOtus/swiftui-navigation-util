@@ -1,5 +1,5 @@
 public protocol Route {
-    associatedtype Requirement: NavigationRequirement
+    associatedtype Requirement: NavigationRequirement = EmptyNavigationRequirement
 
     var requirements: [Requirement] { get }
 }

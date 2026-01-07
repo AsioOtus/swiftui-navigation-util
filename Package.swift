@@ -16,9 +16,18 @@ let package = Package(
             ]
         )
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/AsioOtus/swiftui-signal-util",
+            from: "1.0.0"
+        )
+    ],
     targets: [
         .target(
-            name: "NavigationUtil"
+            name: "NavigationUtil",
+            dependencies: [
+                .product(name: "SignalUtil", package: "swiftui-signal-util")
+            ]
         ),
         .testTarget(
             name: "NavigationUtilTests",

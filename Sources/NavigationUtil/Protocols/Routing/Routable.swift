@@ -1,5 +1,6 @@
 public protocol Routable {
-    associatedtype Router: NavigationUtil.Router
+    associatedtype Route: NavigationUtil.Route
 
-    var router: Router { get }
+    @MainActor
+    func navigate (to route: Route) async throws
 }
