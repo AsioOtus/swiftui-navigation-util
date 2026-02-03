@@ -5,7 +5,7 @@ public extension View {
         _ vm: VM,
         fileId: String = #fileID,
         line: Int = #line,
-    ) -> some View where VM: AnyObject, VM: Routable {
+    ) -> some View where VM: AnyObject, VM: Navigable {
         onSignal(of: GlobalRoute.self, fileId: fileId, line: line) { globalRoute in
             let (navigationConfiguration, globalRoute) = globalRoute.takeFirst(of: NavigationConfiguration<VM>.self)
             

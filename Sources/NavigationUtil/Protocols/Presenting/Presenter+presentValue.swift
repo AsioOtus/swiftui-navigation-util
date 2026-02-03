@@ -258,7 +258,7 @@ public extension Presenter {
                 let property = self[keyPath: keyPath]
                 if property == new {
                     adjust(property)
-                    return
+                    throw .viewExists
                 }
 
                 try await dismissAll()
@@ -305,7 +305,7 @@ public extension Presenter {
                 let property = self[keyPath: keyPath]
                 if property == new {
                     adjust(property)
-                    return
+                    throw .viewExists
                 }
 
                 try await dismissAll()

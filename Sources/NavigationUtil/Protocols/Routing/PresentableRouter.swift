@@ -1,1 +1,1 @@
-public typealias PresentableRouter = Router & Presentable
+public typealias PresentableRouter = Navigator & Presentable

@@ -1,4 +1,4 @@
-public protocol Routable {
+public protocol Navigable {
     associatedtype Route: NavigationUtil.Route
 
     @MainActor

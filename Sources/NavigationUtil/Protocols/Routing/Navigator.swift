@@ -1,1 +1,1 @@
-public typealias Navigator = Router & NavigationInterceptable
+public typealias Navigator = Navigable & Presenter

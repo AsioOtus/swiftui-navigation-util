@@ -115,7 +115,7 @@ public extension Presenter {
                 let property = self[keyPath: keyPath]
                 if property?.traits == new.traits, let property {
                     adjust(property)
-                    return
+                    throw .viewExists
                 }
             },
             adjust: adjust
@@ -139,7 +139,7 @@ public extension Presenter {
                 let property = self[keyPath: keyPath]
                 if property.traits == new.traits {
                     adjust(property)
-                    return
+                    throw .viewExists
                 }
             },
             adjust: adjust

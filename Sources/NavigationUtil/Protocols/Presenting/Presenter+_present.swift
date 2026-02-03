@@ -8,9 +8,15 @@ internal extension Presenter {
         dismiss: (Property, DismissStore<Self>) -> Void,
         prepare: () async throws -> Void,
         adjust: (Property) -> Void
-    ) async throws {
+    ) async rethrows {
         dismiss(new, dismissStore)
-        try await prepare()
+
+        do {
+            try await prepare()
+        } catch is ViewExists {
+            return
+        }
+
         adjust(new)
 
         withAnimation(animation) {

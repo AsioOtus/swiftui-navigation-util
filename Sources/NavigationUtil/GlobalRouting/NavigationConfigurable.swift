@@ -9,7 +9,7 @@ extension NavigationConfiguration {
     }
 }
 
-public struct NavigationConfiguration <VM>: NavigationConfigurable where VM: AnyObject, VM: Routable {
+public struct NavigationConfiguration <VM>: NavigationConfigurable where VM: AnyObject, VM: Navigable {
     let command: Command
 
     public init (
@@ -37,7 +37,7 @@ public extension NavigationConfigurable {
         .init(.configuration(configuration))
     }
 
-    static func config <VM: Routable> (
+    static func config <VM: Navigable> (
         of: VM.Type,
         route: VM.Route
     ) -> NavigationConfiguration<VM> where Self == NavigationConfiguration<VM> {
