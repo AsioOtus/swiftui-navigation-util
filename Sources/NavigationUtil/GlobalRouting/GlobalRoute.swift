@@ -2,7 +2,7 @@ import Foundation
 import SignalUtil
 import SwiftUI
 
-public struct GlobalRoute {
+public struct GlobalRoute: @unchecked Sendable {
     public let id = UUID()
 
     public let routes: [any NavigationConfigurable]
