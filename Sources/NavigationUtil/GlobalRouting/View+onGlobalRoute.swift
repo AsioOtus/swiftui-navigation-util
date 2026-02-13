@@ -4,7 +4,7 @@ public extension View {
     func onGlobalRoute <VM> (
         _ vm: VM,
         fileId: String = #fileID,
-        line: Int = #line,
+        line: Int = #line
     ) -> some View where VM: AnyObject, VM: Navigable {
         onSignal(of: GlobalRoute.self, fileId: fileId, line: line) { globalRoute in
             let (navigationConfiguration, globalRoute) = globalRoute.takeFirst(of: NavigationConfiguration<VM>.self)
