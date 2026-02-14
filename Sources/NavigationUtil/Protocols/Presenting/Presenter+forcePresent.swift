@@ -1,17 +1,32 @@
 import SwiftUI
 
-// Do not dismiss
+// Force dismiss
+// Do not check traits
 // Do not check requirements
 
-// MARK: - optional
 public extension Presenter {
-	func directPresent <Property: Presentable> (
+	func forcePresent (
+		_ keyPath: ReferenceWritableKeyPath<Self, Bool>,
+		animation: Animation? = .default
+	) async throws {
+		try await forcePresent(
+			keyPath,
+			new: true,
+			animation: animation,
+			adjust: { _ in },
+			dismiss: { store in
+				store.add(keyPath, on: self, false, animation: .default)
+			}
+		)
+	}
+
+	func forcePresent <Property> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Property?>,
 		new: Property,
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in }
 	) async throws {
-		try await directPresent(
+		try await forcePresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -25,15 +40,15 @@ public extension Presenter {
 			}
 		)
 	}
-	
-	func directPresent <Property: Presentable> (
+
+	func forcePresent <Property> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Property>,
 		new: Property,
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in }
 	) async throws {
-		try await directPresent(
+		try await forcePresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -45,48 +60,21 @@ public extension Presenter {
 			}
 		)
 	}
-	
-	func directPresent <Property: Presentable> (
-		_ keyPath: ReferenceWritableKeyPath<Self, Property?>,
-		new: Property,
-		animation: Animation? = .default,
-		adjust: (Property?) -> Void = { _ in },
-		dismiss: DismissAction
-	) async throws {
-		try await _present(
-			keyPath,
-			new: new,
-			animation: animation,
-			dismiss: dismiss,
-			prepare: {
-				let property = self[keyPath: keyPath]
-				if property?.traits == new.traits, let property {
-					adjust(property)
-					throw .viewExists
-				}
-			},
-			adjust: adjust
-		)
-	}
-	
-	func directPresent <Property: Presentable> (
+
+	func forcePresent <Property> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Property>,
 		new: Property,
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
 		dismiss: DismissAction
 	) async throws {
-		try await _present(
+		await _present(
 			keyPath,
 			new: new,
 			animation: animation,
 			dismiss: dismiss,
 			prepare: {
-				let property = self[keyPath: keyPath]
-				if property.traits == new.traits {
-					adjust(property)
-					throw .viewExists
-				}
+				forceDismissAll()
 			},
 			adjust: adjust
 		)

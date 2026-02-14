@@ -37,7 +37,7 @@ public extension Presenter {
 	}
 }
 
-// MARK: - bool
+// MARK: - optional
 public extension Presenter {
 	func presentValue <Property, Requirement: NavigationRequirement> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Property?>,
