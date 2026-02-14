@@ -24,7 +24,7 @@ public extension Presenter {
 		_ keyPath: ReferenceWritableKeyPath<Self, Property?>,
 		new: Property,
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await forcePresent(
 			keyPath,
@@ -46,7 +46,7 @@ public extension Presenter {
 		new: Property,
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await forcePresent(
 			keyPath,
@@ -65,7 +65,7 @@ public extension Presenter {
 		_ keyPath: ReferenceWritableKeyPath<Self, Property>,
 		new: Property,
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in },
+		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
 	) async throws {
 		await _present(

@@ -7,7 +7,7 @@ internal extension Presenter {
         animation: Animation?,
         dismiss: DismissAction,
         prepare: () async throws -> Void,
-        adjust: (Property) -> Void
+				adjust: AdjustAction<Property>
     ) async rethrows {
         dismiss(dismissStore)
 

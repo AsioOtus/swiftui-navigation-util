@@ -44,7 +44,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await presentValue(
 			keyPath,
@@ -67,7 +67,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await presentValue(
 			keyPath,
@@ -90,7 +90,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await presentValue(
 			keyPath,
@@ -113,7 +113,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await presentValue(
 			keyPath,
@@ -139,7 +139,7 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await presentValue(
 			keyPath,
@@ -161,7 +161,7 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws {
 		try await presentValue(
 			keyPath,
@@ -183,7 +183,7 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await presentValue(
 			keyPath,
@@ -205,7 +205,7 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in }
+		adjust: AdjustAction<Property> = { _ in }
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await presentValue(
 			keyPath,
@@ -228,7 +228,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in },
+		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
 	) async throws {
 		try await _present(
@@ -248,7 +248,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in },
+		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
 	) async throws {
 		try await _present(
@@ -274,7 +274,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in },
+		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
@@ -295,7 +295,7 @@ public extension Presenter {
 		new: Property,
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
-		adjust: (Property) -> Void = { _ in },
+		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
