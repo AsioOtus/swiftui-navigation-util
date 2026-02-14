@@ -11,8 +11,8 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresent(
+	) throws {
+		try directPresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -29,8 +29,8 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresent(
+	) throws {
+		try directPresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -49,8 +49,8 @@ public extension Presenter {
 		animation: Animation? = .default,
 		adjust: (Property?) -> Void = { _ in },
 		dismiss: DismissAction
-	) async throws {
-		try await _present(
+	) throws {
+		try _present(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -72,8 +72,8 @@ public extension Presenter {
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
-	) async throws {
-		try await _present(
+	) throws {
+		try _present(
 			keyPath,
 			new: new,
 			animation: animation,

@@ -8,8 +8,8 @@ public extension Presenter {
 	func forcePresent (
 		_ keyPath: ReferenceWritableKeyPath<Self, Bool>,
 		animation: Animation? = .default
-	) async throws {
-		try await forcePresent(
+	) {
+		forcePresent(
 			keyPath,
 			new: true,
 			animation: animation,
@@ -25,8 +25,8 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await forcePresent(
+	) {
+		forcePresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -43,8 +43,8 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await forcePresent(
+	) {
+		forcePresent(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -63,8 +63,8 @@ public extension Presenter {
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
-	) async throws {
-		await _present(
+	) {
+		_present(
 			keyPath,
 			new: new,
 			animation: animation,

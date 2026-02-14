@@ -5,8 +5,8 @@ public extension Presenter {
 	func directPresentValue (
 		_ keyPath: ReferenceWritableKeyPath<Self, Bool>,
 		animation: Animation? = .default
-	) async throws {
-		try await directPresentValue(
+	) throws {
+		try directPresentValue(
 			keyPath,
 			new: true,
 			animation: animation,
@@ -25,8 +25,8 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresentValue(
+	) throws {
+		try directPresentValue(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -42,8 +42,8 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresentValue(
+	) throws {
+		try directPresentValue(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -63,8 +63,8 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresentValue(
+	) throws {
+		try directPresentValue(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -83,8 +83,8 @@ public extension Presenter {
 		resetValue: Property? = nil,
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in }
-	) async throws {
-		try await directPresentValue(
+	) throws {
+		try directPresentValue(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -106,8 +106,8 @@ public extension Presenter {
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
-	) async throws {
-		await _present(
+	) throws {
+		_present(
 			keyPath,
 			new: new,
 			animation: animation,
@@ -123,8 +123,8 @@ public extension Presenter {
 		animation: Animation? = .default,
 		adjust: AdjustAction<Property> = { _ in },
 		dismiss: DismissAction
-	) async throws {
-		try await _present(
+	) throws {
+		try _present(
 			keyPath,
 			new: new,
 			animation: animation,
