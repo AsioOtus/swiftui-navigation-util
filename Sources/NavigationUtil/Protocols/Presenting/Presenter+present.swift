@@ -17,7 +17,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -40,7 +40,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -61,7 +61,7 @@ public extension Presenter {
 			new: new,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -83,7 +83,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -99,17 +99,13 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: (Property?) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws {
 		try await _present(
 			keyPath,
 			new: new,
 			animation: animation,
-			dismiss: { property, store in
-				if let property {
-					dismiss(property, store)
-				}
-			},
+			dismiss: dismiss,
 			prepare: {
 				let property = self[keyPath: keyPath]
 				if property?.traits == new.traits {
@@ -128,7 +124,7 @@ public extension Presenter {
 		new: Property,
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws {
 		try await _present(
 			keyPath,
@@ -154,17 +150,13 @@ public extension Presenter {
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
 		adjust: (Property?) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
 			keyPath,
 			new: new,
 			animation: animation,
-			dismiss: { property, store in
-				if let property {
-					dismiss(property, store)
-				}
-			},
+			dismiss: dismiss,
 			prepare: {
 				let property = self[keyPath: keyPath]
 				if property?.traits == new.traits, let property {
@@ -185,7 +177,7 @@ public extension Presenter {
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
 			keyPath,

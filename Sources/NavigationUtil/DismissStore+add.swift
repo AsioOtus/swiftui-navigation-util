@@ -1,5 +1,6 @@
 import SwiftUI
 
+// MARK: - optional
 public extension DismissStore {
 	@discardableResult
 	func add <Root, Property> (
@@ -43,7 +44,7 @@ public extension DismissStore {
 	}
 }
 
-// MARK: bool
+// MARK: - bool
 public extension DismissStore {
 	@discardableResult
 	func add <Root> (
@@ -91,7 +92,7 @@ public extension DismissStore {
 	}
 }
 
-// MARK: value
+// MARK: - value
 public extension DismissStore {
 	@discardableResult
 	func add <Root, Property> (
@@ -153,7 +154,7 @@ public extension DismissStore {
 	}
 }
 
-// MARK: closure
+// MARK: - closure
 public extension DismissStore {
 	@discardableResult
 	func add <Root, Property> (

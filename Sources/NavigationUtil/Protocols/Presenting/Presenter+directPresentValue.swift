@@ -13,7 +13,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: { _ in },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, false, animation: .default)
             }
         )
@@ -30,7 +30,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: { _ in },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, false, animation: .default)
             }
         )
@@ -56,7 +56,7 @@ public extension Presenter {
                     adjust(new)
                 }
             },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, nil, animation: .default)
             }
         )
@@ -79,7 +79,7 @@ public extension Presenter {
                     adjust(new)
                 }
             },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, nil, animation: .default)
             }
         )
@@ -102,7 +102,7 @@ public extension Presenter {
                     adjust(new)
                 }
             },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, nil, animation: .default)
             }
         )
@@ -125,7 +125,7 @@ public extension Presenter {
                     adjust(new)
                 }
             },
-            dismiss: { _, store in
+            dismiss: { store in
                 store.add(keyPath, on: self, nil, animation: .default)
             }
         )
@@ -148,7 +148,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: adjust,
-            dismiss: { _, store in
+            dismiss: { store in
                 if let resetValue {
                     store.add(keyPath, on: self, resetValue, animation: .default)
                 }
@@ -170,7 +170,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: adjust,
-            dismiss: { _, store in
+            dismiss: { store in
                 if let resetValue {
                     store.add(keyPath, on: self, resetValue, animation: .default)
                 }
@@ -192,7 +192,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: adjust,
-            dismiss: { _, store in
+            dismiss: { store in
                 if let resetValue {
                     store.add(keyPath, on: self, resetValue, animation: .default)
                 }
@@ -214,7 +214,7 @@ public extension Presenter {
             requirements: requirements,
             animation: animation,
             adjust: adjust,
-            dismiss: { _, store in
+            dismiss: { store in
                 if let resetValue {
                     store.add(keyPath, on: self, resetValue, animation: .default)
                 }
@@ -231,7 +231,7 @@ public extension Presenter {
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in },
-        dismiss: (Property, DismissStore) -> Void
+        dismiss: DismissAction
     ) async throws {
         await _present(
             keyPath,
@@ -249,7 +249,7 @@ public extension Presenter {
         requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in },
-        dismiss: (Property, DismissStore) -> Void
+        dismiss: DismissAction
     ) async throws {
         try await _present(
             keyPath,

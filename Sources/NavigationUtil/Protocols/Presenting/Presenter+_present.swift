@@ -5,11 +5,11 @@ internal extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         animation: Animation?,
-        dismiss: (Property, DismissStore) -> Void,
+        dismiss: DismissAction,
         prepare: () async throws -> Void,
         adjust: (Property) -> Void
     ) async rethrows {
-        dismiss(new, dismissStore)
+        dismiss(dismissStore)
 
         do {
             try await prepare()

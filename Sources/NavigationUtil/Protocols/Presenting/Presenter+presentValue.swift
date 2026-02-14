@@ -1,5 +1,6 @@
 import SwiftUI
 
+// MARK: - bool
 public extension Presenter {
 	func presentValue <Requirement: NavigationRequirement> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Bool>,
@@ -12,7 +13,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: { _ in },
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -29,13 +30,14 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: { _ in },
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
 	}
 }
 
+// MARK: - bool
 public extension Presenter {
 	func presentValue <Property, Requirement: NavigationRequirement> (
 		_ keyPath: ReferenceWritableKeyPath<Self, Property?>,
@@ -54,7 +56,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -77,7 +79,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -100,7 +102,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -123,7 +125,7 @@ public extension Presenter {
 					adjust(new)
 				}
 			},
-			dismiss: { _, store in
+			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
 		)
@@ -145,7 +147,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -167,7 +169,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -189,7 +191,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -211,7 +213,7 @@ public extension Presenter {
 			requirements: requirements,
 			animation: animation,
 			adjust: adjust,
-			dismiss: { _, store in
+			dismiss: { store in
 				if let resetValue {
 					store.add(keyPath, on: self, resetValue, animation: .default)
 				}
@@ -227,7 +229,7 @@ public extension Presenter {
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws {
 		try await _present(
 			keyPath,
@@ -247,7 +249,7 @@ public extension Presenter {
 		requirements: [Requirement] = [EmptyNavigationRequirement](),
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws {
 		try await _present(
 			keyPath,
@@ -273,7 +275,7 @@ public extension Presenter {
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
 			keyPath,
@@ -294,7 +296,7 @@ public extension Presenter {
 		requirements: [Requirement] = [],
 		animation: Animation? = .default,
 		adjust: (Property) -> Void = { _ in },
-		dismiss: (Property, DismissStore) -> Void
+		dismiss: DismissAction
 	) async throws where Self: NavigationInterceptable, Self.Requirement == Requirement {
 		try await _present(
 			keyPath,
