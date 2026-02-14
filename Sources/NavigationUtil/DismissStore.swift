@@ -1,32 +1,20 @@
-import SwiftUI
+public class DismissStore {
+	internal var dismisses: [() async throws -> Void] = []
+	internal var forceDismisses: [() -> Void] = []
 
-public final class DismissStore<Root: AnyObject> {
-    internal var dismissers: [AnyKeyPath: (Root) async throws -> Void] = [:]
-    internal var forceDismissers: [AnyKeyPath: (Root) -> Void] = [:]
-
-    public init () { }
+	public init () { }
 }
 
 public extension DismissStore {
-    func dismiss (_ keyPath: AnyKeyPath, in root: Root) async throws {
-        try await dismissers[keyPath]?(root)
-    }
+	func dismissAll () async throws {
+		for dismiss in dismisses {
+			try await dismiss()
+		}
+	}
 
-    func dismissAll (in root: Root) async throws {
-        for (_, action) in dismissers {
-            try await action(root)
-        }
-    }
-}
-
-public extension DismissStore {
-    func forceDismiss (_ keyPath: AnyKeyPath, in root: Root) async {
-        forceDismissers[keyPath]?(root)
-    }
-
-    func forceDismissAll (in root: Root) {
-        for (_, action) in forceDismissers {
-            action(root)
-        }
-    }
+	func forceDismissAll () {
+		for dismiss in forceDismisses {
+			dismiss()
+		}
+	}
 }

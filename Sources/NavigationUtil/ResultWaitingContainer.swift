@@ -4,7 +4,7 @@ import SwiftUI
 @available(iOS 17.0,*)
 @Observable
 public final class ResultWaiter <ResultProvider: ResultProvidable>: Presenter, Dismisser {
-    public let dismissStore = DismissStore<ResultWaiter>()
+    public let dismissStore = DismissStore()
 
     internal let resultProvider: () -> ResultProvider
 
@@ -13,18 +13,16 @@ public final class ResultWaiter <ResultProvider: ResultProvidable>: Presenter, D
     public init (_ resultProvider: @escaping @autoclosure () -> ResultProvider) {
         self.resultProvider = resultProvider
 
-        dismissStore.add(\.presenting, animation: .default)
+			dismissStore.add(\.presenting, on: self, animation: .default)
     }
 
-    public func presentUntilResult <Requirement: NavigationRequirement> (
-        requirements: [Requirement] = [],
+    public func presentUntilResult (
         animation: Animation? = .default,
         adjust: (ResultProvider) -> Void
     ) async throws -> ResultProvider.ResultValue {
         try await presentUntilResult(
             \.presenting,
             new: resultProvider(),
-            requirements: requirements,
             animation: animation,
             adjust: adjust
         )

@@ -1,17 +1,15 @@
 import SwiftUI
 
 public extension Presenter where Self: Dismisser {
-    func presentUntilResult <Property: ResultProvidable, Requirement: NavigationRequirement> (
+    func presentUntilResult <Property: ResultProvidable> (
         _ keyPath: ReferenceWritableKeyPath<Self, Property?>,
         new: Property,
-        requirements: [Requirement] = [EmptyNavigationRequirement](),
         animation: Animation? = .default,
         adjust: (Property) -> Void = { _ in }
     ) async throws -> Property.ResultValue {
         try await present(
             keyPath,
             new: new,
-            requirements: requirements,
             animation: animation,
             adjust: adjust
         )

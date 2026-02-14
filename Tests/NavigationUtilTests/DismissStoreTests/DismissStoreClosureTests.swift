@@ -11,7 +11,7 @@ extension DismissStoreTests {
 
             testVM
                 .dismissStore
-                .add(\.boolProperty) { root, keyPath in
+								.add(\.boolProperty, on: testVM) { root, keyPath in
                     root[keyPath: keyPath] = false
                 }
 
@@ -28,8 +28,8 @@ extension DismissStoreTests {
 
             testVM
                 .dismissStore
-                    .add(\.optionalValue)
-                    .add(\.boolProperty, false)
+                    .add(\.optionalValue, on: testVM)
+                    .add(\.boolProperty, on: testVM, false)
 
             #expect(testVM.optionalValue != nil)
 
@@ -41,7 +41,7 @@ extension DismissStoreTests {
         @Test
         func test () async throws {
             let testVM = ParentViewModel()
-            testVM.dismissStore.add(\.childVM)
+            testVM.dismissStore.add(\.childVM, on: testVM)
 
             #expect(testVM.childVM != nil)
             try await testVM.dismissAll()

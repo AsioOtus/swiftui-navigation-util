@@ -5,7 +5,7 @@ internal extension Presenter {
         _ keyPath: ReferenceWritableKeyPath<Self, Property>,
         new: Property,
         animation: Animation?,
-        dismiss: (Property, DismissStore<Self>) -> Void,
+        dismiss: (Property, DismissStore) -> Void,
         prepare: () async throws -> Void,
         adjust: (Property) -> Void
     ) async rethrows {
