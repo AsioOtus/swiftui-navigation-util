@@ -1,8 +1,8 @@
 import SwiftUI
 
-// Force dismiss
-// Do not check traits
-// Do not check requirements
+// + Dismiss (forced)
+// - Traits check
+// - Requirements check
 
 public extension Presenter {
 	func forcePresent (
@@ -30,11 +30,7 @@ public extension Presenter {
 			keyPath,
 			new: new,
 			animation: animation,
-			adjust: { new in
-				if let new {
-					adjust(new)
-				}
-			},
+			adjust: { $0.map(adjust) },
 			dismiss: { store in
 				store.add(keyPath, on: self, nil, animation: .default)
 			}

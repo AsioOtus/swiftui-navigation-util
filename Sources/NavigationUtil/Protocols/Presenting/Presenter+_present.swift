@@ -13,7 +13,7 @@ internal extension Presenter {
 
         do {
             try await prepare()
-        } catch is ViewExists {
+				} catch is ViewAlreadyPresentedError {
             return
         }
 

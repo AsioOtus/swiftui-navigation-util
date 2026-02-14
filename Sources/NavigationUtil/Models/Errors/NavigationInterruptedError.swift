@@ -3,5 +3,5 @@ public struct NavigationInterruptedError: Error {
 }
 
 public extension Error where Self == NavigationInterruptedError {
-    static var navigationInterrupting: NavigationInterruptedError { .init() }
+    static var navigationInterrupted: NavigationInterruptedError { .init() }
 }

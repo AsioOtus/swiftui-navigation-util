@@ -51,11 +51,7 @@ public extension Presenter {
 			new: new,
 			requirements: requirements,
 			animation: animation,
-			adjust: { new in
-				if let new {
-					adjust(new)
-				}
-			},
+			adjust: { $0.map(adjust) },
 			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
@@ -74,11 +70,7 @@ public extension Presenter {
 			new: new,
 			requirements: requirements,
 			animation: animation,
-			adjust: { new in
-				if let new {
-					adjust(new)
-				}
-			},
+			adjust: { $0.map(adjust) },
 			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
@@ -97,11 +89,7 @@ public extension Presenter {
 			new: new,
 			requirements: requirements,
 			animation: animation,
-			adjust: { new in
-				if let new {
-					adjust(new)
-				}
-			},
+			adjust: { $0.map(adjust) },
 			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
@@ -120,11 +108,7 @@ public extension Presenter {
 			new: new,
 			requirements: requirements,
 			animation: animation,
-			adjust: { new in
-				if let new {
-					adjust(new)
-				}
-			},
+			adjust: { $0.map(adjust) },
 			dismiss: { store in
 				store.add(keyPath, on: self, animation: .default)
 			}
@@ -260,7 +244,7 @@ public extension Presenter {
 				let property = self[keyPath: keyPath]
 				if property == new {
 					adjust(property)
-					throw .viewExists
+					throw .viewAlreadyPresented
 				}
 
 				try await dismissAll()
@@ -307,7 +291,7 @@ public extension Presenter {
 				let property = self[keyPath: keyPath]
 				if property == new {
 					adjust(property)
-					throw .viewExists
+					throw .viewAlreadyPresented
 				}
 
 				try await dismissAll()
